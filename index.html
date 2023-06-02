@@ -15,8 +15,10 @@
       <source src="./fireworks.mp3" type="audio/mpeg">
     </audio>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script>// do this for 30 seconds
+    <script>
+    // Set fireworks sound volume lower
     document.querySelector('audio').volume = 0.2
+    // Close window on click or keypress
     document.addEventListener('click', e => {
       confetti({
         particleCount: 100,
@@ -30,6 +32,9 @@
       })
       setTimeout(window.close, 2000)
     })
+    document.addEventListener('keyup', window.close)
+
+    // do this for 30 seconds
     var duration = 30 * 1000;
     var end = Date.now() + duration;
 
@@ -46,6 +51,7 @@
         confetti(options);
         // and launch a few from the right edge
         confetti({...options, angle: 120, origin: {x: 1, y: 1}});
+        // launch confetti explosions at random
         if (Date.now() % 7 === 0) {
           confetti({
             ticks: 50,
@@ -61,7 +67,7 @@
         }
       }
 
-      // keep going until we are out of time
+      // keep going until we are out of time, then close the window
       if (Date.now() < end) {
         requestAnimationFrame(frame);
       } else {
