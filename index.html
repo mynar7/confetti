@@ -16,6 +16,7 @@
     </audio>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
+    const isSmallScreen = window.innerWidth <= 768
     // Set fireworks sound volume lower
     document.querySelector('audio').volume = 0.2
     // Close window on click or keypress
@@ -38,10 +39,11 @@
     var end = Date.now() + duration;
 
     (function frame() {
-      if (Date.now() % 2 === 0) {
+      const launchFreq = isSmallScreen ? 10 : 2
+      if (Date.now() % launchFreq === 0) {
         const options = {
           particleCount: 5,
-          startVelocity: 100,
+          startVelocity: isSmallScreen ? 40 : 100,
           angle: 60,
           spread: 55,
           origin: { x: 0, y: 1}
@@ -55,9 +57,9 @@
           confetti({
             ticks: 50,
             shapes: ['square', 'circle', 'star'],
-            particleCount: 50,
+            particleCount: isSmallScreen ? 25 : 50,
             startVelocity: 30,
-            spread: 360,
+            spread: isSmallScreen ? 30 : 360,
             origin: {
               x: Math.random(),
               y: Math.random() - 0.2
