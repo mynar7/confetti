@@ -20,7 +20,7 @@
     // Set fireworks sound volume lower
     document.querySelector('audio').volume = 0.2
     // Close window on click or keypress
-    document.addEventListener('keyup', window.close)
+    document.addEventListener('keyup', () => setTimeout(window.close, 0))
     document.addEventListener('click', e => {
       confetti({
         particleCount: 100,
