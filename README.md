@@ -12,16 +12,14 @@ $ my_long_running_command; confetti
 I use WSL and can launch Chrome installed on linux with the following command:
 
 ```sh
-$ google-chrome https://leewarrick.com/confetti --new-window --start-fullscreen --autoplay-policy=no-user-gesture-required > /dev/null 2>&1 &
+$ google-chrome https://leewarrick.com/confetti --user-data-dir=$(mktemp -d) -incognito --new-window --start-fullscreen --autoplay-policy=no-user-gesture-required > /dev/null 2>&1 &
 ```
 &nbsp;
 
-Here's how I installed Chrome on Linux with WSL:
+I also created an alias for Chrome by pointing to the version installed in Windows:
 
 ```sh
-$ sudo apt update && sudo apt -y upgrade && sudo apt -y autoremove
-$ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-$ sudo apt -y install ./google-chrome-stable_current_amd64.deb
+$ alias google-chrome="/mnt/c/'Program Files (x86)'/Google/Chrome/Application/chrome.exe"
 ```
 &nbsp;
 
